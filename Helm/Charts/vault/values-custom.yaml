@@ -1,0 +1,73 @@
+injector:
+  replicas: 1
+
+server:
+  ingress:
+    enabled: true
+    labels: {}
+      # traffic: external
+    annotations:
+      nginx.ingress.kubernetes.io/backend-protocol: HTTPS                                          
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"                                       
+      nginx.ingress.kubernetes.io/ssl-passthrough: "true"  
+
+    # When HA mode is enabled and K8s service registration is being used,
+    # configure the ingress to point to the Vault active service.
+    activeService: true
+    hosts:
+    - host: vault.local
+      paths: []
+    ## Extra paths to prepend to the host configuration. This is useful when working with annotation based services.
+    extraPaths: []
+    # - path: /*
+    #   backend:
+    #     serviceName: ssl-redirect
+    #     servicePort: use-annotation
+    tls:                                                                                    
+    - hosts: 
+      - vault.local                                               
+      secretName: https-cert
+
+  postStart: []
+  # - /bin/sh
+  # - -c
+  # - /vault/userconfig/myscript/run.sh 
+  affinity: null
+  ha:
+    enabled: true
+    replicas: 3
+    raft:
+      # Enables Raft integrated storage
+      enabled: true
+      # Set the Node Raft ID to the name of the pod
+      setNodeId: true
+
+      # Note: Configuration files are stored in ConfigMaps so sensitive data
+      # such as passwords should be either mounted through extraSecretEnvironmentVars
+      # or through a Kube secret.  For more information see:
+      # https://www.vaultproject.io/docs/platform/k8s/helm/run#protecting-sensitive-vault-configurations
+      config: |
+        ui = true
+
+        listener "tcp" {
+          tls_disable = 1
+          address = "[::]:8200"
+          cluster_address = "[::]:8201"
+        }
+
+        storage "raft" {
+          path = "/vault/data"
+            retry_join {
+              leader_api_addr = "http://vault-active:8200"
+            }
+        }
+
+        service_registration "kubernetes" {}
+
+ui:
+  # True if you want to create a Service entry for the Vault UI.
+  #
+  # serviceType can be used to control the type of service created. For
+  # example, setting this to "LoadBalancer" will create an external load
+  # balancer (for supported K8S installations) to access the UI.
+  enabled: true

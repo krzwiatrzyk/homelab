@@ -1,0 +1,12 @@
+- name: Check if K9s is installed
+  shell: >
+    k9s
+  register: k9s_installed
+  changed_when: k9s_installed.rc != 0
+  ignore_errors: yes
+
+- name: Install K9s
+  become: yes
+  shell: >
+    curl -sS https://webinstall.dev/k9s | bash
+  when: k9s_installed.rc != 0

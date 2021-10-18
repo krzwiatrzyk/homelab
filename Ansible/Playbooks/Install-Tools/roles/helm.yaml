@@ -1,0 +1,12 @@
+- name: Check if Helm is installed
+  shell: >
+    helm
+  register: Helm_installed
+  changed_when: Helm_installed.rc != 0
+  ignore_errors: yes
+
+- name: Install Helm
+  become: yes
+  shell: >
+    curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+  when: Helm_installed.rc != 0

@@ -1,0 +1,48 @@
+- name: Get latest stable version number
+  uri: 
+    url: https://dl.k8s.io/release/stable.txt
+    return_content: true
+  register: uri
+
+- name: Show version
+  debug: 
+    var: uri.content
+
+- name: Download kubectl
+  get_url:
+    url: https://dl.k8s.io/release/{{ uri.content }}/bin/linux/amd64/kubectl
+    dest: /usr/bin/kubectl
+    mode: 0755
+  become: yes
+
+- name: Check if Krew is installed
+  shell: >
+    source ~/.bashrc
+    kubectl krew
+  register: krew_installed
+  ignore_errors: yes
+  changed_when: krew_installed.rc != 0
+
+- name: Install Krew
+  shell: >
+    (
+      set -x; cd "$(mktemp -d)" &&
+      OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+      ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+      curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/krew.tar.gz" &&
+      tar zxvf krew.tar.gz &&
+      KREW=./krew-"${OS}_${ARCH}" &&
+      "$KREW" install krew
+    )
+  when: krew_installed.rc != 0
+
+- name: Set PATH
+  lineinfile: 
+    path: ~/.bashrc
+    line: 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"'
+    create: yes
+
+- name: Install krew plugins
+  shell: >
+    source ~/.bashrc
+    kubectl krew install ns ctx

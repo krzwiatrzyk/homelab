@@ -1,0 +1,12 @@
+- name: Check if Arkade is installed
+  shell: >
+    arkade
+  register: installed
+  changed_when: installed.rc != 0
+  ignore_errors: yes
+
+- name: Install Arkade
+  become: yes
+  shell: >
+    curl -sLS https://dl.get-arkade.dev | sh
+  when: installed.rc != 0

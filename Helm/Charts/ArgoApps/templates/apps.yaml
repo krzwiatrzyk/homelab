@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-bundle
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: apps
+    server: https://kubernetes.default.svc
+  project: apps
+  source:
+    path: Helm/Charts/ArgoApps
+    repoURL: git@github.com:krzwiatrzyk/homelab.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}

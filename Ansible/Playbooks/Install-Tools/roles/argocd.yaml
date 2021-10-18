@@ -1,0 +1,16 @@
+- name: Get latest version
+  shell: >
+    VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/') &&
+    echo $VERSION
+  register: version
+
+- name: Show version
+  debug: 
+    var: version
+
+- name: Download ArgoCD executable
+  get_url:
+    url: https://github.com/argoproj/argo-cd/releases/download/{{ version.stdout_lines[0] }}/argocd-linux-amd64
+    dest: /usr/local/bin/argocd
+    mode: 0755
+  become: yes

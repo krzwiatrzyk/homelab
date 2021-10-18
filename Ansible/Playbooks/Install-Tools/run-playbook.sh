@@ -1,0 +1,1 @@
+ansible-playbook playbook.yaml -e "ansible_sudo_pass=$(pass sudo)"    #--ask-become-pass

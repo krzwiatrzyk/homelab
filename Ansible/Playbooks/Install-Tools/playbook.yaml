@@ -1,0 +1,23 @@
+---
+- name: Install tools
+  hosts: localhost
+  vars_files:
+  - tools.yaml
+  vars:
+    dump: text
+
+  tasks:
+  - when: install.kind
+    include: roles/kind.yaml 
+  - when: install.tools
+    include: roles/tools.yaml
+  - when: install.kubectl
+    include: roles/kubectl.yaml
+  - when: install.k9s
+    include: roles/k9s.yaml
+  - when: install.helm
+    include: roles/helm.yaml
+  - when: install.argocd
+    include: roles/argocd.yaml
+  - when: install.arkade
+    include: roles/arkade.yaml

@@ -1,0 +1,16 @@
+- name: Generate GPG
+  shell: >
+    gpg --full-generate-key
+
+- name: Get keyid
+  shell: >
+    gpg --list-keys | head -n 4 | tail -n 1 | tr -d " "
+  register: keyid
+
+- name: Setup Pass
+  shell: >
+    pass init {{ keyid.stdout_lines[0] }}
+
+- name: Add sudo password to store
+  shell: >
+    pass sudo

@@ -1,0 +1,9 @@
+---
+- name: RunOnce tasks
+  hosts: localhost
+  vars:
+    do:
+      pass_setup: false
+  tasks:
+  - include: roles/pass-setup.yaml
+    when: do.pass_setup

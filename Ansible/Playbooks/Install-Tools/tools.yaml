@@ -1,0 +1,17 @@
+tools_package:
+  - vagrant
+  - docker-compose
+  - figlet
+  - terminator
+  - git
+  - pass
+  - asciinema
+
+install:
+  tools: true
+  kubectl: false
+  kind: false
+  k9s: false
+  helm: false
+  argocd: false
+  arkade: false

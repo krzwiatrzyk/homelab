@@ -1,0 +1,18 @@
+alertmanager:
+  ingress:
+    enabled: true
+    hosts:
+    - alertmanager.local
+    
+grafana:
+  ingress:
+    enabled: true
+    hosts:
+    - grafana.local
+  adminPassword: password
+
+prometheus:
+  ingress:
+    enabled: true
+    hosts:
+    - prometheus.local

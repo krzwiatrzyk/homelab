@@ -1,0 +1,26 @@
+- name: Install tools
+  package: 
+    name: "{{ item }}"
+    state: present
+  loop: "{{ tools_package }}"
+  become: yes
+
+- name: Get user name running this playbook
+  become: false
+  local_action: command whoami
+  register: username
+
+- name: Add user to a group
+  become: yes
+  user: 
+    name: "{{ username.stdout }}"
+    append: yes
+    groups:
+    - docker
+
+- name: Install VS Code
+  community.general.snap:
+    name: code
+    classic: yes
+  when: ansible_distribution == "Ubuntu"
+  become: yes

@@ -1,0 +1,11 @@
+enabled:
+  vault: false
+  strimzi: true
+  kafka: true
+  prometheus: true
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: git@github.com:krzwiatrzyk/homelab.git
+    targetRevision: HEAD
