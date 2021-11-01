@@ -10,8 +10,8 @@ spec:
     server: https://kubernetes.default.svc
   project: apps
   source:
-    path: Helm/Charts/ArgoApps
-    repoURL: git@github.com:krzwiatrzyk/homelab.git
+    path: Helm/Charts/argo-apps
+    repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: HEAD
   syncPolicy:
     automated: {}
