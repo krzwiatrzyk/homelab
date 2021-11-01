@@ -1,0 +1,8 @@
+server:
+  extraArgs:
+  - --insecure
+  ingress:
+    hosts:
+    - argocd.local
+    paths:
+    - "/"

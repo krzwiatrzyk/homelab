@@ -1,0 +1,29 @@
+{{- if .Values.enabled.vpa -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vertical-pod-autoscaler
+spec:
+  destination:
+    namespace: homelab
+    server: {{ .Values.spec.destination.server }}
+  project: apps
+  source:
+    path: Helm/Charts/vertical-pod-autoscaler
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+    helm:
+      valueFiles:
+      - values.yaml 
+      - values-custom.yaml
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      prune: true
+  ignoreDifferences:
+  - group: admissionregistration.k8s.io
+    kind: MutatingWebhookConfiguration
+    jsonPointers:
+    - /webhooks
+{{ end }}

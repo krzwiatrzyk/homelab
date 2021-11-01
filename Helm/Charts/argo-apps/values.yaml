@@ -1,0 +1,13 @@
+ingressController: traefik
+enabled:
+  vault: false
+  strimzi: false
+  kafka: false
+  prometheus: false
+  vpa: true
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: git@github.com:krzwiatrzyk/homelab.git
+    targetRevision: HEAD
