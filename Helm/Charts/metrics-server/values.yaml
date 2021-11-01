@@ -1,4 +1,8 @@
-# metricsserver:
+metricsserver:
+  extraArgs:
+    kubelet-insecure-tls: true
+    kubelet-preferred-address-types: InternalIP
+    
 # hostAliases: 
 # - ip: "10.0.2.15"
 #   hostnames: 
