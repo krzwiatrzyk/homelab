@@ -8,10 +8,10 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: apps
   source:
-    helm:
-      valueFiles:
-      - values.yaml 
-      - values-custom.yaml
+    # helm:
+    #   valueFiles:
+    #   - values.yaml 
+    #   - values-custom.yaml
     path: Helm/Charts/metrics-server
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
