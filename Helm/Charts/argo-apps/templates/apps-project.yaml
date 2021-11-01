@@ -12,7 +12,7 @@ spec:
   namespaceResourceWhitelist:
   - group: '*'
     kind: '*'
-  orphanedResources: {}
+  #orphanedResources: {}
   sourceRepos:
   - '*'
 status: {}
