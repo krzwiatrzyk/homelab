@@ -2,7 +2,8 @@ metrics-server:
   extraArgs:
     kubelet-insecure-tls: true
     #kubelet-preferred-address-types: InternalIP
-  hostAliases: 
-  - ip: "10.0.2.15"
-    hostnames: 
-    - "normandy"
+    kubelet-preferred-address-types: InternalDNS,InternalIP,ExternalDNS,ExternalIP,Hostname
+  # hostAliases: 
+  # - ip: "10.0.2.15"
+  #   hostnames: 
+  #   - "normandy"
