@@ -102,3 +102,10 @@ spec:
               protocol: layer2
               addresses:
               - 10.0.2.100-10.0.2.105
+      - name: metrics-server
+        chartname: bitnami/metrics-server
+        version: "5.10.7"
+        values: |2
+          extraArgs:
+            kubelet-insecure-tls: true
+            kubelet-preferred-address-types: InternalIP
