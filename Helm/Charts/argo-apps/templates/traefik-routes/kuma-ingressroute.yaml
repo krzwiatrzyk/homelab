@@ -1,0 +1,20 @@
+{{ if and (eq .Values.ingressController "traefik") (.Values.enabled.kuma) }}
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kuma-ingress-route
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`kuma.local`)
+      priority: 10
+      services:
+        - name: kuma-control-plane
+          port: 80
+  tls:
+    secretName: kuma.local
+{{ end }}
+  
