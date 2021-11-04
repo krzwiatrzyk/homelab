@@ -7,8 +7,6 @@ metadata:
 spec:
   entryPoints:
   - traefik
-  - web
-  - websecure
   routes:
     - kind: Rule
       match: Host(`traefik.local`)
