@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-mesh
+  namespace: test-mesh
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: test-mesh
+  template:
+    metadata:
+      labels:
+        app: test-mesh
+      annotations:
+        kuma.io/mesh: test-mesh
+    spec:
+      containers:
+      - name: test-mesh
+        image: nginx
+        ports:
+        - containerPort: 80

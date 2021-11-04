@@ -1,0 +1,13 @@
+apiVersion: kuma.io/v1alpha1
+kind: Mesh
+metadata:
+  name: test-mesh
+spec:
+  metrics:
+    enabledBackend: test-mesh
+    backends:
+      - name: test-mesh
+        type: prometheus
+        conf:
+          port: 5670
+          path: /metrics

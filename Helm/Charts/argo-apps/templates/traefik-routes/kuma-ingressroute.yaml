@@ -10,7 +10,6 @@ spec:
   routes:
     - kind: Rule
       match: Host(`kuma.local`)
-      priority: 10
       services:
         - name: kuma-control-plane
           port: 5681

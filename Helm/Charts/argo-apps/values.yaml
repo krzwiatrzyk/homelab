@@ -4,7 +4,7 @@ enabled:
   vault: false
   strimzi: false
   kafka: false
-  prometheus: false
+  prometheus: true
   vpa: true
   kuma: true
 spec:
