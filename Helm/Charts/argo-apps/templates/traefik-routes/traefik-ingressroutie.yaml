@@ -6,18 +6,12 @@ metadata:
 spec:
   entryPoints:
   - traefik
-#   routes:
-#   - kind: Rule
-#     match: PathPrefix(`/dashboard`) || PathPrefix(`/api`)
-#     services:
-#     - kind: TraefikService
-#       name: api@internal
   routes:
     - kind: Rule
       match: Host(`traefik.local`)
-    services:
-    - kind: TraefikService
-      name: api@internal
+      services:
+      - kind: TraefikService
+        name: api@internal
   tls:
     secretName: traefik.local
 {{ end }}
