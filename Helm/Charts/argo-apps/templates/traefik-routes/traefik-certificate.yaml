@@ -1,0 +1,13 @@
+{{ if eq .Values.ingressController "traefik" }}
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: traefik.local
+spec:
+  dnsNames:
+    - traefik.local
+  secretName: traefik.local
+  issuerRef:
+    name: selfsigned
+    kind: ClusterIssuer
+{{ end }}

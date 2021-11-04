@@ -1,0 +1,24 @@
+{{ if eq .Values.ingressController "traefik" }}
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-ingress-route
+spec:
+  entryPoints:
+  - traefik
+#   routes:
+#   - kind: Rule
+#     match: PathPrefix(`/dashboard`) || PathPrefix(`/api`)
+#     services:
+#     - kind: TraefikService
+#       name: api@internal
+  routes:
+    - kind: Rule
+      match: Host(`traefik.local`)
+    services:
+    - kind: TraefikService
+      name: api@internal
+  tls:
+    secretName: traefik.local
+{{ end }}
+  
