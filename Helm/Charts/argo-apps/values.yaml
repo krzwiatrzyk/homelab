@@ -6,6 +6,7 @@ enabled:
   kafka: false
   prometheus: false
   vpa: true
+  kuma: true
 spec:
   destination:
     server: https://kubernetes.default.svc
