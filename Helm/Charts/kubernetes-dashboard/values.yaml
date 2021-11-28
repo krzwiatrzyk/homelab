@@ -1,16 +1,16 @@
 kubernetes-dashboard:
-  protocolHttp: true
+  #protocolHttp: true
 
-  extraArgs:
-    - --enable-skip-login
-    - --enable-insecure-login
-    - --system-banner="Welcome to Kubernetes"
+  # extraArgs:
+  #   - --enable-skip-login
+  #   - --enable-insecure-login
+  #   - --system-banner="Welcome to Kubernetes"
 
-  ingress:
-    enabled: true
+  # ingress:
+  #   enabled: true
   
-    hosts:
-      - kubernetes-dashboard.local
+  #   hosts:
+  #     - kubernetes-dashboard.local
 
-  settings:
-    clusterName: witcherek7-k8s-cluster
+  # settings:
+  #   clusterName: witcherek7-k8s-cluster
