@@ -1,6 +1,6 @@
 ingressController: traefik
 enabled:
-  metricsserver: true
+  metricsServer: true
   vault: false
   strimzi: false
   kafka: false
