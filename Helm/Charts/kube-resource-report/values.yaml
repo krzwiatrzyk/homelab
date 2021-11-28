@@ -1,0 +1,5 @@
+kube-resource-report:
+  rbac:
+    create: true
+  serviceAccount:
+    create: true
