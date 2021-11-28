@@ -1,0 +1,4 @@
+{{- $secretList := (lookup "v1" "ServiceAccount" .Release.Namespace "admin").secrets }}
+{{- $secretName := (first $secretList).name -}}
+{{- $token := (lookup "v1" "Secret" .Release.Namespace $secretName).data.token }}
+{{ printf "token: \n%s" ($token | b64dec) }}

@@ -1,13 +1,13 @@
 ingressController: traefik
 enabled:
-  metricsserver: false
+  metricsserver: true
   vault: false
   strimzi: false
   kafka: false
   prometheus: true
   vpa: true
   kuma: true
-  kubernetesDashboard: true
+  kubernetesDashboard: false
 spec:
   destination:
     server: https://kubernetes.default.svc
