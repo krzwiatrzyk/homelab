@@ -5,5 +5,7 @@ helm repo add hashicorp https://helm.releases.hashicorp.com
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo add cowboysysop https://cowboysysop.github.io/charts/
 helm repo add kuma https://kumahq.github.io/charts
+helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+
 
 helm repo update
