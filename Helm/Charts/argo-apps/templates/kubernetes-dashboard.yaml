@@ -5,7 +5,7 @@ metadata:
   name: kubernetes-dashboard
 spec:
   destination:
-    namespace: kube-system
+    namespace: homelab
     server: {{ .Values.spec.destination.server }}
   project: apps
   source:

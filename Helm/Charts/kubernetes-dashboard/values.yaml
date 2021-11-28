@@ -12,5 +12,5 @@ kubernetes-dashboard:
   #   hosts:
   #     - kubernetes-dashboard.local
 
-  # settings:
-  #   clusterName: witcherek7-k8s-cluster
+  settings:
+    clusterName: witcherek7-k8s-cluster
