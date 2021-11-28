@@ -1,0 +1,49 @@
+{{- $app := .Release.Name -}}
+{{- $component := "web" -}}
+{{- $name := printf "%s-%s" $app $component -}}
+
+{{- if .Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress "}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "{{ $name }}"
+  labels:
+    app: "{{ $app }}"
+    component: "{{ $component }}"
+spec:
+  rules:
+    - host: "{{ .Values.ingressHost }}"
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: {{ $name }}
+                port:
+                  name: http
+  tls:
+    - hosts:
+      - "{{ .Values.ingressHost }}"
+{{- else }}
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: "{{ $name }}"
+  labels:
+    app: "{{ $app }}"
+    component: "{{ $component }}"
+spec:
+  rules:
+    - host: "{{ .Values.ingressHost }}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              serviceName: {{ $name }}
+              servicePort: http
+  tls:
+    - hosts:
+      - "{{ .Values.ingressHost }}"
+{{- end }}

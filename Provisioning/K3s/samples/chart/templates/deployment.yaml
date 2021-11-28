@@ -1,0 +1,39 @@
+{{- $app := .Release.Name -}}
+{{- $component := "web" -}}
+{{- $name := printf "%s-%s" $app $component -}}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ $name }}"
+  labels:
+    app: "{{ $app }}"
+    component: "{{ $component }}"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "{{ $app }}"
+      component: "{{ $component }}"
+  template:
+    metadata:
+      labels:
+        app: "{{ $app }}"
+        component: "{{ $component }}"
+    spec:
+      containers:
+        - name: "{{ $component }}"
+          image: "{{ .Values.image }}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - name: src
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: src
+          hostPath: 
+            path: /src
+            type: DirectoryOrCreate
