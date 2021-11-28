@@ -9,8 +9,8 @@ kubernetes-dashboard:
   ingress:
     enabled: true
   
-  hosts:
-    - kubernetes-dashboard.local
+    hosts:
+      - kubernetes-dashboard.local
 
   settings:
     clusterName: witcherek7-k8s-cluster
