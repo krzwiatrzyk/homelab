@@ -7,7 +7,7 @@ enabled:
   prometheus: true
   vpa: true
   kuma: true
-  kubernetesDashboard: false
+  kubernetesDashboard: true
 spec:
   destination:
     server: https://kubernetes.default.svc
