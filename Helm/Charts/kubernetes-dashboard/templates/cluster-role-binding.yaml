@@ -5,7 +5,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: dashboard
-  namespace: homelab
+  namespace: {{ .Release.Namespace }}
 roleRef:
   kind: ClusterRole
   name: cluster-admin
