@@ -6,6 +6,6 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo add cowboysysop https://cowboysysop.github.io/charts/
 helm repo add kuma https://kumahq.github.io/charts
 helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
-
+helm repo add slamdev https://slamdev.github.io/helm-charts
 
 helm repo update

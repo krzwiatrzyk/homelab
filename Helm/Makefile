@@ -8,5 +8,5 @@ install-skooner-dashboard:
 	kubectl apply -f https://raw.githubusercontent.com/skooner-k8s/skooner/master/kubernetes-skooner.yaml
 
 uninstall-skooner-dashboard:
-	kubectl apply -f https://raw.githubusercontent.com/skooner-k8s/skooner/master/kubernetes-skooner.yaml
+	kubectl delete -f https://raw.githubusercontent.com/skooner-k8s/skooner/master/kubernetes-skooner.yaml
 

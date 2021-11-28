@@ -7,3 +7,5 @@ metrics-server:
   # - ip: "10.0.2.15"
   #   hostnames: 
   #   - "normandy"
+  apiService:
+    create: true

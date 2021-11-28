@@ -8,6 +8,7 @@ enabled:
   vpa: true
   kuma: true
   kubernetesDashboard: false
+  kubeResourceReport: true
 spec:
   destination:
     server: https://kubernetes.default.svc
