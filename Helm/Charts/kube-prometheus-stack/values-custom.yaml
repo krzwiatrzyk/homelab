@@ -3,16 +3,14 @@ alertmanager:
     enabled: true
     hosts:
     - alertmanager.local
-    annotations:
-      argocd.argoproj.io/compare-options: IgnoreExtraneous
+    # annotations:
+    #   argocd.argoproj.io/compare-options: IgnoreExtraneous
     
 grafana:
   ingress:
     enabled: true
     hosts:
     - grafana.local
-    annotations:
-      argocd.argoproj.io/compare-options: IgnoreExtraneous
   adminPassword: password
   
 
@@ -21,5 +19,3 @@ prometheus:
     enabled: true
     hosts:
     - prometheus.local
-    annotations:
-      argocd.argoproj.io/compare-options: IgnoreExtraneous

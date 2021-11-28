@@ -7,5 +7,6 @@ helm repo add cowboysysop https://cowboysysop.github.io/charts/
 helm repo add kuma https://kumahq.github.io/charts
 helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
 helm repo add slamdev https://slamdev.github.io/helm-charts
+helm repo add octant-dashboard https://aleveille.github.io/octant-dashboard-turnkey/repo
 
 helm repo update

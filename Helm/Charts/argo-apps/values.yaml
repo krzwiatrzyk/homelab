@@ -9,6 +9,7 @@ enabled:
   kuma: true
   kubernetesDashboard: false
   kubeResourceReport: false
+  octant: true
 spec:
   destination:
     server: https://kubernetes.default.svc
