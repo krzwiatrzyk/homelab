@@ -3,3 +3,5 @@ kube-resource-report:
     create: true
   serviceAccount:
     create: true
+  image:
+    tag: 21.10.0
