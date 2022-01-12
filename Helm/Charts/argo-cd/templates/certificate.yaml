@@ -1,0 +1,13 @@
+{{ with (index .Values "argo-cd" "server" "ingress" "hosts" 0) }}
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ . }}
+spec:
+  dnsNames:
+    - {{ . }}
+  secretName: {{ . }}
+  issuerRef:
+    name: {{ $.Values.certificateIssuer }}
+    kind: ClusterIssuer
+{{ end }}

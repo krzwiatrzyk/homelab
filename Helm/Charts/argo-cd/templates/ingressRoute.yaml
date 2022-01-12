@@ -1,0 +1,18 @@
+{{ with (index .Values "argo-cd" "server" "ingress" "hosts" 0) }}
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: argocd-server-ingress-route
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`{{ . }}`)
+      kind: Rule
+      services:
+        - name: argo-cd-argocd-server
+          port: 80
+  tls:
+    secretName: {{ . }}
+{{ end }}
+    

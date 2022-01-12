@@ -1,0 +1,6 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: homelab-issuer
+spec:
+  selfSigned: {}

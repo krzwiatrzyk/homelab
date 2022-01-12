@@ -1,11 +1,12 @@
 k3d-create-cluster:
-	k3d cluster create demo --agents 2
+	# k3d cluster create demo --agents 2
+	k3d cluster create homelab --servers 1 -p "80:80@loadbalancer" -p "443:443@loadbalancer"
 
 k3d-list-clusters:
 	k3d cluster list
 
 k3d-delete-cluster:
-	k3d cluster delete demo
+	k3d cluster delete homelab
 
 k3d-import-image:
 	k3d image import -c demo elo:1.0.0
@@ -40,3 +41,6 @@ k3s-create-single-node-cluster:
 
 k3s-check-config:
 	k3s check-config 
+
+k3d-expose-port:
+	k3d node edit k3d-homelab-serverlb --port-add 80:80

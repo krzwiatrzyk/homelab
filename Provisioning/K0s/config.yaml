@@ -91,6 +91,11 @@ spec:
         chartname: traefik/traefik
         version: "10.3.2"
         namespace: default
+        values: |2
+          providers:
+            kubernetesIngress:
+              publishedService:
+                enabled: true
       - name: metallb
         chartname: bitnami/metallb
         version: "2.5.4"

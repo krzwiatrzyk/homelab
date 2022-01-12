@@ -1,0 +1,2 @@
+traefikHost: traefik.local
+certificateIssuer: homelab-cluster-issuer
