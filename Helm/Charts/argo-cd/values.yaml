@@ -23,6 +23,8 @@ enabled:
   kubeResourceReport: false
   octant: false
   heimdall: true
+  certManager: true
+  traefik: true
 
 spec:
   destination:
@@ -30,3 +32,5 @@ spec:
   source:
     repoURL: https://github.com/krzwiatrzyk/homelab.git
     targetRevision: HEAD
+
+installCRDs: true

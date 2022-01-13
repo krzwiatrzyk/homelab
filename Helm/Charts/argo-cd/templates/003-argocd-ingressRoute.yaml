@@ -1,3 +1,4 @@
+{{ if .Values.installCRDs }}
 {{ with (index .Values "argo-cd" "server" "ingress" "hosts" 0) }}
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -15,4 +16,4 @@ spec:
   tls:
     secretName: {{ . }}
 {{ end }}
-    
+{{ end }}

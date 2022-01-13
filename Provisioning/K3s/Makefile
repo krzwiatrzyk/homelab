@@ -1,6 +1,10 @@
 k3d-create-cluster:
 	# k3d cluster create demo --agents 2
-	k3d cluster create homelab --servers 1 -p "80:80@loadbalancer" -p "443:443@loadbalancer"
+	k3d cluster create homelab \
+	--servers 1 \
+	-p "80:80@loadbalancer" \
+	-p "443:443@loadbalancer" \
+	--volume /k3s:/k3s@all
 
 k3d-list-clusters:
 	k3d cluster list
