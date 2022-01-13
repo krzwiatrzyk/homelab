@@ -1,10 +1,11 @@
-persistence:
-  config:
-    enabled: true
-    type: hostPath
-    mountPath:  /config
-    hostPath: /k3s/heimdall/config
-    readOnly: false
+heimdall:
+  persistence:
+    config:
+      enabled: true
+      type: hostPath
+      mountPath:  /config
+      hostPath: /k3s/heimdall/config
+      readOnly: false
 
 traefikHost: heimdall.local
 certificateIssuer:  homelab-cluster-issuer
