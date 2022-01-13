@@ -1,0 +1,8 @@
+apiVersion: v2
+appVersion: 8.2.0
+dependencies:
+- name: heimdall
+  repository: https://k8s-at-home.com/charts/
+  version: 8.2.0
+name: heimdall
+version: 1.0.0

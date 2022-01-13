@@ -1,21 +1,17 @@
-{{- if .Values.enabled.strimzi -}}
+{{- if .Values.enabled.kubeResourceReport -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: strimzi
+  name: kube-resource-report
 spec:
   destination:
-    namespace: strimzi
+    namespace: {{ .Release.Namespace }}
     server: {{ .Values.spec.destination.server }}
   project: apps
   source:
-    path: Helm/Charts/strimzi-kafka-operator
+    path: Helm/Charts/kube-resource-report
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
-    helm:
-      valueFiles:
-      - values.yaml 
-      - values-custom.yaml
   syncPolicy:
     syncOptions:
     - CreateNamespace=true

@@ -1,15 +1,15 @@
-{{ if .Values.enabled.metricsServer }}
+{{- if .Values.enabled.kuma -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: metrics-server
+  name: kuma
 spec:
   destination:
-    namespace: kube-system
+    namespace: {{ .Release.Namespace }}
     server: {{ .Values.spec.destination.server }}
   project: apps
   source:
-    path: Helm/Charts/metrics-server
+    path: Helm/Charts/kuma
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:
@@ -17,4 +17,9 @@ spec:
     - CreateNamespace=true
     automated:
       prune: true
+  ignoreDifferences:
+  - group: admissionregistration.k8s.io
+    kind: MutatingWebhookConfiguration
+    jsonPointers:
+    - /webhooks
 {{ end }}

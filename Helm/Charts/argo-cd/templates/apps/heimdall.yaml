@@ -1,15 +1,15 @@
-{{- if .Values.enabled.octant -}}
+{{- if .Values.enabled.heimdall -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: octant
+  name: heimdall
 spec:
   destination:
-    namespace: homelab
+    namespace: {{ .Release.Namespace }}
     server: {{ .Values.spec.destination.server }}
   project: apps
   source:
-    path: Helm/Charts/octant
+    path: Helm/Charts/heimdall
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:

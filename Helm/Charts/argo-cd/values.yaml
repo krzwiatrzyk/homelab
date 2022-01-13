@@ -10,3 +10,23 @@ argo-cd:
       - "/"
 
 certificateIssuer: homelab-cluster-issuer
+
+enabled:
+  metricsServer: false
+  vault: false
+  strimzi: false
+  kafka: false
+  prometheus: false
+  vpa: false
+  kuma: false
+  kubernetesDashboard: false
+  kubeResourceReport: false
+  octant: false
+  heimdall: true
+
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/krzwiatrzyk/homelab.git
+    targetRevision: HEAD
