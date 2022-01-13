@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: "{{ .Release.Name }}-ingress-route"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`{{ .Values.traefikHost }}`)
+      kind: Rule
+      services:
+        - name: heimdall
+          port: 80
+  tls:
+    secretName: {{ .Values.traefikHost }}
