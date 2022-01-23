@@ -1,0 +1,14 @@
+{
+    "apiVersion": "miniocontroller.min.io/v1beta1",
+    "kind": "MinIOInstance",
+    "metadata": {
+        "name": "minio"
+    },
+    "spec": {
+        "replicas": 1,
+        "credsSecret": {
+            "name": "minio-creds-secret"
+        },
+        "requestAutoCert": false
+    }
+}
