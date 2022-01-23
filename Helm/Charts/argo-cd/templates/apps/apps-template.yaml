@@ -12,6 +12,7 @@ spec:
   source:
     repoURL: {{ .chartRepo }}
     chart: {{ .name }}
+    targetRevision: {{ .version }}
     helm:
       values: |
         {{- .values | nindent 8 }}

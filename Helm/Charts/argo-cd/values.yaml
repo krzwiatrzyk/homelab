@@ -38,5 +38,6 @@ installCRDs: true
 apps:
 - name: dapr
   chartRepo: https://dapr.github.io/helm-charts/
+  version: 1.5.1
   values: |
 
