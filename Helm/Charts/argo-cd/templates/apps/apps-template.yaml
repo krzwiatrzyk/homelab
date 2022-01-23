@@ -11,6 +11,7 @@ spec:
   project: apps
   source:
     repoURL: {{ .chartRepo }}
+    sourceChart: {{ .name }}
     helm:
       values: |
         {{- .values | nindent 8 }}
