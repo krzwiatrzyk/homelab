@@ -1,0 +1,14 @@
+alertmanager:
+  enabled: false
+
+grafana:
+  ingress:
+    enabled: true
+    hosts:
+    - grafana.example.com
+    annotations:
+      kubernetes.io/ingress.class: contour
+
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelector: {}

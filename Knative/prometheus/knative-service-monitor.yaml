@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    serving.knative.dev/release: v1.1.0
+    release: kube-prometheus-stack
+  name: knative
+  namespace: knative-serving
+spec:
+  endpoints:
+  - path: /metrics
+    port: http-metrics
+  selector:
+    matchLabels:
+      serving.knative.dev/release: v1.1.0
