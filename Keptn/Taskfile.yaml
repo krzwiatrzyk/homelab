@@ -1,0 +1,40 @@
+version: '3'
+
+includes:
+  general: ../Taskfile.yaml
+
+vars:
+  NAME: keptn
+
+tasks:
+  create-cluster:
+    cmds:
+    - task: general:create-cluster
+      vars:
+        CLUSTER_NAME: "{{.NAME}}"
+
+  delete-cluster:
+    cmds:
+    - task: general:delete-cluster
+      vars:
+        CLUSTER_NAME: "{{.NAME}}"
+
+  install-keptn-cli:
+    cmds:
+    - curl -sL https://get.keptn.sh | KEPTN_VERSION=0.13.1 bash
+
+  install-keptn-chart:
+    cmds:
+    - helm repo add keptn https://charts.keptn.sh
+    - helm upgrade --install keptn keptn/keptn -n keptn --create-namespace --set=continuous-delivery.enabled=true --wait
+
+
+  install-keptn-on-cluster:
+    cmds:
+    - keptn install --use-case=continuous-delivery
+
+  expose-keptn:
+    cmds:
+    - curl -SL https://raw.githubusercontent.com/keptn/examples/master/quickstart/expose-keptn.sh | bash
+
+      

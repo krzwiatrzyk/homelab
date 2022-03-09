@@ -1,0 +1,31 @@
+replicaCount: 1
+servers:
+- zones:
+  - zone: local
+  port: 53
+  plugins:
+  - name: errors
+  - name: health
+    configBlock: |-
+      lameduck 5s
+  - name: ready
+  - name: cache
+    parameters: 30
+  - name: file
+    parameters: /etc/coredns/local
+  - name: forward
+    parameters: . /etc/resolv.conf
+  - name: loop
+  - name: reload
+  - name: loadbalance
+zoneFiles:
+- filename: local
+  domain: local
+  contents: |
+    local.   IN SOA local. local. 2015082541 7200 3600 1209600 3600
+    *.local. IN A 127.0.0.1
+
+isClusterService: false
+serviceType: "ClusterIP"
+
+  
